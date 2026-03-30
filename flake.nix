@@ -41,7 +41,7 @@
 
         packages.default = pkgs.rustPlatform.buildRustPackage {
           pname = "stellar-history-archive-hasher";
-          version = "0.7.0";
+          version = "0.8.1";
           src = ./.;
           
           cargoLock = {
