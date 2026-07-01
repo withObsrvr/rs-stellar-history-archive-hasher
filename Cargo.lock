@@ -119,9 +119,9 @@ checksum = "2bfcf67fea2815c2fc3b90873fae90957be12ff417335dfadc7f52927feb03b2"
 
 [[package]]
 name = "ethnum"
-version = "1.5.2"
+version = "1.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca81e6b4777c89fd810c25a4be2b1bd93ea034fbe58e6a75216a34c6b82c539b"
+checksum = "40404c3f5f511ec4da6fe866ddf6a717c309fdbb69fbbad7b0f3edab8f2e835f"
 
 [[package]]
 name = "generic-array"
@@ -279,7 +279,7 @@ checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
 name = "stellar-history-archive-hasher"
-version = "0.8.1"
+version = "0.9.2"
 dependencies = [
  "base64 0.13.1",
  "console_error_panic_hook",
@@ -302,9 +302,9 @@ dependencies = [
 
 [[package]]
 name = "stellar-xdr"
-version = "26.0.0"
+version = "26.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fea3195594b044ea3a5b05906f81d945480825f00db4e3ae7d77526bf546ff3a"
+checksum = "ea6e29c7e1f071c2767916460d006668197843d5d93f0ec8893a26f72a14f595"
 dependencies = [
  "base64 0.22.1",
  "cfg_eval",
