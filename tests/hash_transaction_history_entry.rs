@@ -1,7 +1,7 @@
 extern crate core;
 
 use std::io;
-use stellar_xdr::curr::Error;
+use stellar_xdr::Error;
 
 #[test]
 fn test_happy() {

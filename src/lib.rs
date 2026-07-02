@@ -13,7 +13,7 @@ pub unsafe fn hash_transaction_history_entry(bytes: &[u8]) -> Uint8Array {
 }
 
 pub mod internal {
-    use stellar_xdr::curr::{Error, ReadXdr, TransactionHistoryResultEntry, TransactionHistoryEntry, WriteXdr, TransactionEnvelope, Limits, TransactionHistoryEntryExt};
+    use stellar_xdr::{Error, Limits, ReadXdr, TransactionEnvelope, TransactionHistoryEntry, TransactionHistoryEntryExt, TransactionHistoryResultEntry, WriteXdr};
     use sha2::{Digest, Sha256};
 
     pub fn hash_transaction_history_result_entry(bytes: impl AsRef<[u8]>) -> Result<[u8; 32], Error> {
