@@ -2,14 +2,30 @@ use js_sys::{Uint8Array};
 use wasm_bindgen::prelude::*;
 
 
+/// Hashes a `TransactionHistoryResultEntry`.
+///
+/// Returns a JS error - a catchable exception - when the entry cannot be
+/// decoded, instead of panicking across the wasm boundary. A panic aborts the
+/// module and surfaces as an opaque `unreachable`, which is how an entry that a
+/// build is too old to parse ends up being reported as archive corruption.
 #[wasm_bindgen]
-pub unsafe fn hash_transaction_history_result_entry(bytes: &[u8]) -> Uint8Array {
-    return Uint8Array::view(&internal::hash_transaction_history_result_entry(bytes).unwrap());
+pub fn hash_transaction_history_result_entry(bytes: &[u8]) -> Result<Uint8Array, JsError> {
+    let hash = internal::hash_transaction_history_result_entry(bytes).map_err(|e| {
+        JsError::new(&format!(
+            "could not decode TransactionHistoryResultEntry: {e}"
+        ))
+    })?;
+    // `from` copies into a fresh JS buffer. `view` would alias wasm linear memory
+    // owned by a temporary that is freed as soon as this function returns.
+    Ok(Uint8Array::from(&hash[..]))
 }
 
+/// Hashes a `TransactionHistoryEntry`. Same error contract as above.
 #[wasm_bindgen]
-pub unsafe fn hash_transaction_history_entry(bytes: &[u8]) -> Uint8Array {
-    return Uint8Array::view(&internal::hash_transaction_history_entry(bytes).unwrap());
+pub fn hash_transaction_history_entry(bytes: &[u8]) -> Result<Uint8Array, JsError> {
+    let hash = internal::hash_transaction_history_entry(bytes)
+        .map_err(|e| JsError::new(&format!("could not decode TransactionHistoryEntry: {e}")))?;
+    Ok(Uint8Array::from(&hash[..]))
 }
 
 pub mod internal {
